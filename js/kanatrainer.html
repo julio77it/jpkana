@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en-US">
+ 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kana Trainer</title>
+    <script type="text/javascript" src="kanatrainer.js"></script>
+    <script type="text/javascript">
+    function verify() {
+        expected = document.getElementById("expected").value 
+        got = document.getElementById("got").value    
+        if (expected == got) {
+            document.getElementById("result").innerHTML = "Correct ! Well done !";
+        } else {
+            document.getElementById("result").innerHTML = "Wrong ! it should be <b>" + expected + "</b>, you wrote <b>" + got + "</b>";
+        }
+    }
+    function newKana() {
+        result = generate(
+                document.getElementById("kana").value,
+                document.getElementById("level").value,
+                document.getElementById("length").value
+        )
+        document.getElementById("test").innerHTML = result[0]
+        document.getElementById("expected").value = result[1]
+        document.getElementById("got").value = ''
+    }
+    </script>
+</head>
+ 
+<body>
+    <form>
+        <table>
+            <tr>
+                <th>Choose a kana :</th>
+                <td>
+                    <select  name="kana" id="kana">
+                        <option value="hiragana">Hiragana</option>
+                        <option value="katana">Katakana</option>
+                    </select>             
+                </td>
+            </tr>
+            <tr>
+                <th>Level :</th>
+                <td>
+                    <input type="number" id="level" min="1" max="5" value="1">
+                </td>
+            </tr>
+            <tr>
+                <th>Length :</th>
+                <td>
+                    <input type="number" id="length" min="1" max="10" value="3">
+                </td>
+            </tr>
+            <tr>
+                <th>Read kana chars :</th>
+                <td>
+                    <!--input type="text" id="test" readonly></input-->
+                    <span id="test"></span>
+                    <input type="text" id="expected" hidden readonly></input>
+                </td>
+            </tr>
+            <tr>
+                <th>Write phonetics :</th>
+                <td>
+                    <input type="text" id="got"></input>
+                </td>
+            </tr>
+            <tr>
+                <th/>
+                <td>
+                    <button type="button" onclick="javascript:verify();">verify</button>
+                    <button type="button" onclick="javascript:newKana();">new</button>
+                </td>
+            </tr>
+            <tr>
+                <th/>
+                <td>
+                    <p id="result" readonly></p>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+<script type="text/javascript">
+    var intvl = setInterval(function() {
+        if (Object.keys(kanas).length>0) { 
+            clearInterval(intvl);
+            newKana()
+        }
+    }, 100);
+</script>
+</html>

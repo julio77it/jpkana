@@ -1,0 +1,4 @@
+{
+    "consonants" : ["KK", "SS", "TT", "NN", "MM", "GG", "ZZ", "DD", "BB", "PP"],
+    "vocals"     : ["A", "I", "U", "E", "O"]
+}

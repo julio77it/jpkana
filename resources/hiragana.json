@@ -44,7 +44,7 @@
 {"consonant": "R", "vocal": "O", "romanji": "ro", "kana": "ろ", "difficulty" : 2},
 {"consonant": "W", "vocal": "A", "romanji": "wa", "kana": "わ", "difficulty" : 2},
 {"consonant": "W", "vocal": "O", "romanji": "wo", "kana": "を", "difficulty" : 2},
-{"consonant": "N", "vocal": "", "romanji": "n", "kana": "ん", "difficulty" : 2},
+{"consonant": "n", "vocal": "O", "romanji": "n", "kana": "ん", "difficulty" : 2},
 {"consonant": "G", "vocal": "A", "romanji": "ga", "kana": "が", "difficulty" : 3},
 {"consonant": "G", "vocal": "I", "romanji": "gi", "kana": "ぎ", "difficulty" : 3},
 {"consonant": "G", "vocal": "U", "romanji": "gu", "kana": "ぐ", "difficulty" : 3},

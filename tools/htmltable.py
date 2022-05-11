@@ -18,10 +18,11 @@ def getTableRows(consonants, vocals, rows):
     return rows
 
 def tableToHtml(data, header):
-    hdr = '<tr>'
-    for h in header:
-        hdr += '<th>{}</th>'.format(h)
-    hdr += '</tr>\n'
+    # hdr = '<tr>'
+    # for h in header:
+    #     hdr += '<th>{}</th>'.format(h)
+    # hdr += '</tr>\n'
+    hdr=''
 
     dt = ''
     for d in data:

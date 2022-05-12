@@ -5,15 +5,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Kana Trainer</title>
-    <script type="text/javascript" src="kanatrainer.js"></script>
+</head>
+ 
+<body>
+<p>
     <script type="text/javascript">
+
+    var url = {
+        'hiragana' : 'https://raw.githubusercontent.com/julio77it/jpkana/main/resources/hiragana.json'
+    ,   'katakana' : 'https://raw.githubusercontent.com/julio77it/jpkana/main/resources/katakana.json'
+    };
+    var kanas = {}
+
+    async function load(kana) {
+        u = url[kana];
+        const response = await fetch(u);
+        const j = await response.json();
+        kanas[kana] = j;
+    }
+    load('hiragana')
+    load('katakana')
+
+    function generate(kana, level, length) {
+        filtered = kanas[kana].filter(function (value) {
+            return level >= value['difficulty'];
+        });
+
+        toread = ''
+        towrite = ''
+
+        for (let i = 0; i < length; i++) {
+            idx = Math.floor(Math.random() * filtered.length);
+            toread += filtered[idx]['kana']
+            towrite += filtered[idx]['romanji']
+        }
+        return [toread,towrite]
+    }
     function verify() {
         expected = document.getElementById("expected").value 
-        got = document.getElementById("got").value    
+        got = document.getElementById("got").value.toLowerCase();    
+        if (got.length == 0)
+            return;
         if (expected == got) {
-            document.getElementById("result").innerHTML = "Correct ! Well done !";
+            document.getElementById("result").innerHTML = "Good ! This is correct !";
         } else {
-            document.getElementById("result").innerHTML = "Wrong ! it should be <b>" + expected + "</b>, you wrote <b>" + got + "</b>";
+            document.getElementById("result").innerHTML = "Wrong ! Should be <b>" + expected + "</b>, yout wrote <b>" + got + "</b>";
         }
     }
     function newKana() {
@@ -25,36 +61,40 @@
         document.getElementById("test").innerHTML = result[0]
         document.getElementById("expected").value = result[1]
         document.getElementById("got").value = ''
+        document.getElementById("result").innerHTML = '';
     }
+    var intvl = setInterval(function() {
+        if (Object.keys(kanas).length>0) { 
+            clearInterval(intvl);
+            newKana()
+        }
+    }, 100);
     </script>
-</head>
- 
-<body>
     <form>
         <table>
             <tr>
-                <th>Choose a kana :</th>
+                <th>Choose :</th>
                 <td>
                     <select  name="kana" id="kana">
                         <option value="hiragana">Hiragana</option>
-                        <option value="katana">Katakana</option>
+                        <option value="katakana">Katakana</option>
                     </select>             
                 </td>
             </tr>
             <tr>
-                <th>Level :</th>
+                <th>level :</th>
                 <td>
                     <input type="number" id="level" min="1" max="5" value="1">
                 </td>
             </tr>
             <tr>
-                <th>Length :</th>
+                <th>length :</th>
                 <td>
                     <input type="number" id="length" min="1" max="10" value="3">
                 </td>
             </tr>
             <tr>
-                <th>Read kana chars :</th>
+                <th>kana :</th>
                 <td>
                     <!--input type="text" id="test" readonly></input-->
                     <span id="test"></span>
@@ -62,9 +102,9 @@
                 </td>
             </tr>
             <tr>
-                <th>Write phonetics :</th>
+                <th>romanji :</th>
                 <td>
-                    <input type="text" id="got"></input>
+                    <input type="text" id="got" style="text-transform: lowercase"></input>
                 </td>
             </tr>
             <tr>
@@ -82,13 +122,6 @@
             </tr>
         </table>
     </form>
+</p>
 </body>
-<script type="text/javascript">
-    var intvl = setInterval(function() {
-        if (Object.keys(kanas).length>0) { 
-            clearInterval(intvl);
-            newKana()
-        }
-    }, 100);
-</script>
 </html>

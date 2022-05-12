@@ -11,3 +11,4 @@ booklike:
 	tools/htmltable.py resources/hiragana.json resources/filters/book.pg2.json > html/hiragana.book.pg2.html
 	tools/htmltable.py resources/katakana.json resources/filters/book.pg1.json > html/katakana.book.pg1.html
 	tools/htmltable.py resources/katakana.json resources/filters/book.pg2.json > html/katakana.book.pg2.html
+	tools/htmltable.py resources/katakana.json resources/filters/book.pg3.json > html/katakana.book.pg3.html

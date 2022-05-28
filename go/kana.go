@@ -76,7 +76,7 @@ func New(hbytes []byte, kbytes []byte) (*KanaGenerator, error) {
 	return kG, nil
 }
 
-func (kG KanaGenerator) generate(kanaName string, length uint, difficulty uint) (string, string) {
+func (kG *KanaGenerator) Generate(kanaName string, length uint, difficulty uint) (string, string) {
 	kanaList, ok := kG.kanas[kanaName]
 	if !ok {
 		return "", ""

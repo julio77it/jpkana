@@ -74,7 +74,7 @@ func TestGeneratorError(t *testing.T) {
 	assert.NotNil(t, kG)
 	assert.Nil(t, err)
 
-	kana, romanji := kG.generate("BOH", 5, 1)
+	kana, romanji := kG.Generate("BOH", 5, 1)
 
 	assert.Empty(t, kana)
 	assert.Empty(t, romanji)
@@ -91,13 +91,13 @@ func TestGenerator(t *testing.T) {
 	assert.NotNil(t, kG)
 	assert.Nil(t, err)
 
-	kana, romanji := kG.generate(HIRAGANA, 5, 1)
+	kana, romanji := kG.Generate(HIRAGANA, 5, 1)
 	assert.NotEmpty(t, kana)
 	assert.NotEmpty(t, romanji)
 	assert.Equal(t, "あああああ", kana)
 	assert.Equal(t, "aaaaa", romanji)
 
-	kana, romanji = kG.generate(KATAKANA, 5, 1)
+	kana, romanji = kG.Generate(KATAKANA, 5, 1)
 	assert.NotEmpty(t, kana)
 	assert.NotEmpty(t, romanji)
 	assert.Equal(t, "アアアアア", kana)
